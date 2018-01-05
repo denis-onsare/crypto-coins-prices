@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Pusher form 'pusher-js'
+import Pusher from 'pusher-js'
 import './Today.css'
 import axios from 'axios'
 
@@ -16,24 +16,12 @@ class Today extends Component {
        // This is called when an instance of a component is being created and inserted into the DOM.
        componentWillMount () {
          // establish a connection to Pusher
-           this.pusher = new Pusher('APP_KEY', {
-               cluster: 'YOUR_CLUSTER',
+           this.pusher = new Pusher('APPKEY', {
+               cluster: 'CLUSTER',
                encrypted: true
            });
            // Subscribe to the 'coin-prices' channel
            this.prices = this.pusher.subscribe('coin-prices');
-
-           sendPricePusher (data) {
-              axios.post('/prices/new', {
-                  prices: data
-              })
-                  .then(response => {
-                      console.log(response)
-                  })
-                  .catch(error => {
-                      console.log(error)
-                  })
-          }
 
            axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC&tsyms=USD')
                .then(response => {
@@ -45,9 +33,23 @@ class Today extends Component {
                // Catch any error here
                .catch(error => {
                    console.log(error)
-               })
-       }
-       componentDidMount () {
+               });
+           }
+
+        sendPricePusher = (data) => {
+            axios.post('/prices/new', {
+                prices: data
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
+
+        componentDidMount () {
+
             setInterval(() => {
                 axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC&tsyms=USD')
                     .then(response => {

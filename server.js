@@ -7,10 +7,10 @@
 
     //initialize Pusher with your appId, key, secret and cluster
     const pusher = new Pusher({
-        appId: 'APP_ID',
-        key: 'APP_KEY',
-        secret: 'APP_SECRET',
-        cluster: 'YOUR_CLUSTER',
+        appId: 'APPID',
+        key: 'APPKEY',
+        secret: 'APPSECRED',
+        cluster: 'APPCLUCTER',
         encrypted: true
     })
 
