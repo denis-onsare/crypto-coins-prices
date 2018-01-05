@@ -1,11 +1,13 @@
 .topheader {
-  background-color: #174c80;
+  background-color: red;
 }
 .navbar {
-  background-color: #174c80;
+  background-color: red;
 }
 .navbar-item {
   color: #fff;
+  font-size: 26px;
+  font-weight: bold;
 }
 .results--section {
   padding: 20px 0px;
